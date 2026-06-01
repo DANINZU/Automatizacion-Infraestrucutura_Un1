@@ -60,7 +60,8 @@ La actividad práctica de esta unidad consistió en el despliegue de una aplicac
 Todo el entorno de desarrollo fue configurado sobre una máquina virtual con **Ubuntu Server 22.04 LTS** ejecutada en **Oracle VirtualBox**. Se descargó la imagen ISO oficial de Ubuntu Server desde [https://ubuntu.com/download/server](https://ubuntu.com/download/server) y se creó una máquina virtual con los recursos necesarios (memoria RAM, almacenamiento y adaptador de red en modo puente) para garantizar conectividad con el equipo anfitrión. Esta arquitectura de virtualización permite reproducir el entorno de manera aislada y consistente, simulando un servidor real de producción.
  
 </div>
-![Ubuntu 22.04 verificación](ubuntu 22.png)
+
+![Ubuntu 22.04 verificación](ubuntu22.png)
  
 ---
  
@@ -74,6 +75,7 @@ Visual Studio Code se instaló en el equipo anfitrión (host) desde el sitio ofi
 - **GitLens** — Integración avanzada con el historial de Git.
 - **Remote - SSH** — Conexión y edición remota sobre la máquina virtual.
 </div>
+
 ![VSCode con Remote SSH y archivos del proyecto](visual.png)
  
 ---
@@ -115,7 +117,7 @@ docker --version
 docker compose version
 ```
  
-![Docker version](docker version.png)
+![Docker version](docker_version.png)
 ---
  
 #### 3. Instalación de Git en Ubuntu Server 22.04
@@ -155,7 +157,7 @@ Docker descargó automáticamente la imagen `hello-world` desde Docker Hub y eje
  
 </div>
 
-![Docker hello-world](docker run hello.png)
+![Docker hello-world](docker_run_hello.png)
  
 ---
  
@@ -169,7 +171,7 @@ Se creó y ejecutó el archivo `stack-hdbg.yml` (Actividad 2) con todos los serv
 docker-compose -f stack-hdbg.yml up -d
 ```
  
-![Docker ps](docker%20ps.png)
+![Docker ps](docker_ps.png)
  
 ---
  
@@ -234,7 +236,7 @@ volumes:
   dbfiles:
 ```
  
-![stack-hdbg.yml](visual%20yaml.png)
+![stack-hdbg.yml](visualyaml.png)
  
 ---
  
@@ -256,7 +258,7 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
  
-![Dockerfile backend](Captura%20de%20pantalla%20de%202026-05-31%2021-27-34.png)
+![Dockerfile backend](docker_2.png)
  
 ---
  
