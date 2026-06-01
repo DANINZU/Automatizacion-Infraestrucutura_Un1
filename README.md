@@ -60,7 +60,7 @@ La actividad práctica de esta unidad consistió en el despliegue de una aplicac
 Todo el entorno de desarrollo fue configurado sobre una máquina virtual con **Ubuntu Server 22.04 LTS** ejecutada en **Oracle VirtualBox**. Se descargó la imagen ISO oficial de Ubuntu Server desde [https://ubuntu.com/download/server](https://ubuntu.com/download/server) y se creó una máquina virtual con los recursos necesarios (memoria RAM, almacenamiento y adaptador de red en modo puente) para garantizar conectividad con el equipo anfitrión. Esta arquitectura de virtualización permite reproducir el entorno de manera aislada y consistente, simulando un servidor real de producción.
  
 </div>
-> 📸 *[Captura de pantalla: VirtualBox mostrando la máquina virtual de Ubuntu Server 22.04 en ejecución]*
+![Ubuntu 22.04 verificación](./images/ubuntu_22.png)
  
 ---
  
@@ -74,7 +74,7 @@ Visual Studio Code se instaló en el equipo anfitrión (host) desde el sitio ofi
 - **GitLens** — Integración avanzada con el historial de Git.
 - **Remote - SSH** — Conexión y edición remota sobre la máquina virtual.
 </div>
-> 📸 *[Captura de pantalla: VSCode con los plugins instalados en el panel de extensiones]*
+![VSCode con Remote SSH y archivos del proyecto](./images/visual.png)
  
 ---
  
@@ -115,7 +115,7 @@ docker --version
 docker compose version
 ```
  
-> 📸 *[Captura de pantalla: Terminal de Ubuntu Server mostrando la versión de Docker instalada]*
+![Docker version](./images/docker_version.png)
  
 ---
  
@@ -135,7 +135,7 @@ git config --global user.name "Héctor Daniel Beltrán Gutiérrez"
 git config --global user.email "tu-correo@ejemplo.com"
 ```
  
-> 📸 *[Captura de pantalla: Terminal de Ubuntu Server mostrando la versión de Git instalada]*
+![Git version](./images/git.png)
  
 ---
  
@@ -155,7 +155,8 @@ docker run hello-world
 Docker descargó automáticamente la imagen `hello-world` desde Docker Hub y ejecutó el contenedor, mostrando el mensaje de confirmación. Esto indica que el motor de Docker está instalado y funcionando correctamente.
  
 </div>
-> 📸 *[Captura de pantalla: Terminal con la salida del comando `docker run hello-world`]*
+
+![Docker hello-world](./images/docker_run_hello.png)
  
 ---
  
@@ -169,7 +170,7 @@ Se creó y ejecutó el archivo `stack-hdbg.yml` (Actividad 2) con todos los serv
 docker-compose -f stack-hdbg.yml up -d
 ```
  
-> 📸 *[Captura de pantalla: Terminal mostrando los contenedores levantados correctamente]*
+![Docker ps](./images/docker_ps.png)
  
 ---
  
@@ -234,7 +235,7 @@ volumes:
   dbfiles:
 ```
  
-> 📸 *[Captura de pantalla: Archivo YML abierto en VSCode]*
+![stack-hdbg.yml](./images/visual_yaml.png)
  
 ---
  
@@ -256,8 +257,7 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
  
-> 📸 *[Captura de pantalla: Dockerfile del backend en VSCode]*
-> 📸 *[Captura de pantalla: Terminal con el proceso de build del backend]*
+![Dockerfile backend](./images/docker.png)
  
 ---
  
@@ -279,8 +279,8 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
  
-> 📸 *[Captura de pantalla: Dockerfile del frontend en VSCode]*
-> 📸 *[Captura de pantalla: Terminal con el proceso de build del frontend]*
+![Dockerfile frontend](./images/ngnix.png)
+![nginx.conf](./images/Captura_de_pantalla_de_2026-05-31_21-27-34.png)
  
 ---
  
@@ -293,15 +293,16 @@ Una vez ejecutado el comando `docker-compose up`, los cuatro servicios se desple
 **Frontend — Sistema de Ventas** (`http://localhost/home`)
 - Usuario: `admin`
 - Contraseña: `12345678`
-> 📸 *[Captura de pantalla: Pantalla de bienvenida del Sistema de Ventas en el navegador]*
+![Frontend Sistema de Ventas](./images/sistema.png)
  
 **Backend — API Node.js** (`http://localhost:8080`)
  
-> 📸 *[Captura de pantalla: Respuesta JSON del backend `"API is located at /api"`]*
+![Backend API](./images/8080.png)
  
 **PhpMyAdmin** (`http://localhost:9090`)
  
-> 📸 *[Captura de pantalla: Interfaz de PhpMyAdmin con la base de datos `sistema_ventas_db` visible]*
+![PhpMyAdmin login](./images/php.png)
+![PhpMyAdmin base de datos](./images/pagina.png)
  
 ---
  
