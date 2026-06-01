@@ -40,7 +40,7 @@ La actividad práctica de esta unidad consistió en el despliegue de una aplicac
  
 </div>
 ---
- 
+
 ## Desarrollo
  
 ### Descripción de las herramientas de desarrollo
@@ -54,46 +54,88 @@ La actividad práctica de esta unidad consistió en el despliegue de una aplicac
  
 ### Procedimiento de instalación
  
+#### Entorno de virtualización
+ 
+<div align="justify" style="line-height: 1.15;">
+Todo el entorno de desarrollo fue configurado sobre una máquina virtual con **Ubuntu Server 22.04 LTS** ejecutada en **Oracle VirtualBox**. Se descargó la imagen ISO oficial de Ubuntu Server desde [https://ubuntu.com/download/server](https://ubuntu.com/download/server) y se creó una máquina virtual con los recursos necesarios (memoria RAM, almacenamiento y adaptador de red en modo puente) para garantizar conectividad con el equipo anfitrión. Esta arquitectura de virtualización permite reproducir el entorno de manera aislada y consistente, simulando un servidor real de producción.
+ 
+</div>
+> 📸 *[Captura de pantalla: VirtualBox mostrando la máquina virtual de Ubuntu Server 22.04 en ejecución]*
+ 
+---
+ 
 #### 1. Instalación de Visual Studio Code y Plugins
  
 <div align="justify" style="line-height: 1.15;">
-Se descargó el instalador de Visual Studio Code desde el sitio oficial [https://code.visualstudio.com/](https://code.visualstudio.com/). Una vez instalado, se configuró el entorno agregando las siguientes extensiones clave para el desarrollo:
+Visual Studio Code se instaló en el equipo anfitrión (host) desde el sitio oficial [https://code.visualstudio.com/](https://code.visualstudio.com/). Para trabajar de forma remota sobre la máquina virtual, se utilizó la extensión **Remote - SSH**, que permite editar archivos directamente en el servidor Ubuntu desde el editor local. Adicionalmente se instalaron las siguientes extensiones clave:
  
 - **Docker** — Gestión de contenedores e imágenes desde el editor.
 - **YAML** — Soporte para sintaxis y validación de archivos `.yml`.
 - **GitLens** — Integración avanzada con el historial de Git.
+- **Remote - SSH** — Conexión y edición remota sobre la máquina virtual.
 </div>
-> 📸 *[Captura de pantalla: VSCode abierto con los plugins instalados en el panel de extensiones]*
+> 📸 *[Captura de pantalla: VSCode con los plugins instalados en el panel de extensiones]*
  
 ---
  
-#### 2. Instalación de Docker
+#### 2. Instalación de Docker en Ubuntu Server 22.04
  
 <div align="justify" style="line-height: 1.15;">
-Se descargó Docker Desktop desde el sitio oficial [https://www.docker.com/](https://www.docker.com/). Se procedió con la instalación estándar, habilitando la integración con WSL2 en sistemas Windows. Se reinició el equipo para aplicar los cambios del hipervisor virtual. Para verificar la instalación se ejecutó el siguiente comando:
+La instalación de Docker Engine se realizó directamente en la máquina virtual con Ubuntu Server 22.04 siguiendo el procedimiento oficial para distribuciones basadas en Debian. Los comandos ejecutados fueron los siguientes:
  
 </div>
 ```shell
+# Actualizar el índice de paquetes e instalar dependencias
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+ 
+# Agregar la clave GPG oficial de Docker
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+ 
+# Agregar el repositorio oficial de Docker
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+ 
+# Instalar Docker Engine y Docker Compose
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io \
+  docker-buildx-plugin docker-compose-plugin
+ 
+# Agregar el usuario al grupo docker para ejecutar sin sudo
+sudo usermod -aG docker $USER
+ 
+# Verificar instalación
 docker --version
+docker compose version
 ```
  
-> 📸 *[Captura de pantalla: Terminal mostrando la versión de Docker instalada]*
+> 📸 *[Captura de pantalla: Terminal de Ubuntu Server mostrando la versión de Docker instalada]*
  
 ---
  
-#### 3. Instalación de Git
+#### 3. Instalación de Git en Ubuntu Server 22.04
  
 <div align="justify" style="line-height: 1.15;">
-Se descargó el cliente oficial de Git desde [https://git-scm.com/](https://git-scm.com/). Durante la instalación, se seleccionó VSCode como editor de texto predeterminado. Posteriormente, se configuró el nombre de usuario y correo electrónico de forma global mediante los siguientes comandos:
+Git viene preinstalado en Ubuntu Server 22.04; sin embargo, se verificó su versión y se realizó la configuración global del usuario con los siguientes comandos:
  
 </div>
 ```shell
+# Verificar versión (o instalar si no está disponible)
+sudo apt-get install -y git
+git --version
+ 
+# Configurar identidad global
 git config --global user.name "Héctor Daniel Beltrán Gutiérrez"
 git config --global user.email "tu-correo@ejemplo.com"
-git --version
 ```
  
-> 📸 *[Captura de pantalla: Terminal mostrando la versión de Git instalada]*
+> 📸 *[Captura de pantalla: Terminal de Ubuntu Server mostrando la versión de Git instalada]*
  
 ---
  
@@ -304,5 +346,3 @@ Tsitoara, M. (2019). *Beginning Git and GitHub: A comprehensive guide to version
  
 </div>
  
-Tsitoara, M. (2019). Beginning Git and GitHub: A comprehensive guide to version control, project management, and teamwork for the new developer. Apress.
-</div>
